@@ -5,8 +5,11 @@
  */
 package busqueda;
 
+import bean.Cabfactura;
 import bean.CabfacturaHasCuota;
 import bean.CabfacturaHasCuotaPK;
+import java.util.Collection;
+import view.factura;
 
 /**
  *
@@ -121,7 +124,7 @@ public class buscarCuota extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+                .addComponent(jTextField1)
                 .addGap(18, 18, 18)
                 .addComponent(btnImportat)
                 .addContainerGap())
@@ -170,6 +173,18 @@ public class buscarCuota extends javax.swing.JDialog {
     private void btnImportatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportatActionPerformed
         this.d.getCabfacturaHasCuotaPK().setCuotaIdcuota((int)  jtCuota.getValueAt(jtCuota.getSelectedRow(), 5));//el 2 corresponde al campo 2 de la línea seleccionada que Precio de Venta
         //this.d.getCabfacturaHasCuotaPK().setCuotaIdcuota((int) jtCuota.getValueAt(jtCuota.getSelectedRow() ,1));
+        
+        int valorTotal = 0;
+        int index = factura.masterTable.getSelectedRow();// pegamos un index en el masterTable
+        Cabfactura c = factura.list.get(factura.masterTable.convertRowIndexToModel(index));
+        Collection<CabfacturaHasCuota> ds = c.getCabfacturaHasCuotaList();
+        for (CabfacturaHasCuota detCuota : ds)// for each, aca el va a pegar todos esos objetos dentro de la colección
+        {        
+            valorTotal = valorTotal + detCuota.getMonto();//Valor = valor total + total detalle de cada línea
+        }
+        //Aca el total general es igual a valor total
+        factura.tfTotalGral.setText(String.valueOf(valorTotal));//tfTotalGral es el nombre de la variable Total General de la cabecera
+        
         this.dispose();
        
 //this.d.setVlrUnitPresuDet((Double)jtProducto.getValueAt(jtProducto.getSelectedRow() ,2));//el 2 corresponde al campo 2 de la línea seleccionada que Precio de Venta

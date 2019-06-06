@@ -178,7 +178,7 @@ public class factura extends JPanel {
                     .addComponent(tfCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfNombreCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -504,16 +504,16 @@ public class factura extends JPanel {
     }//GEN-LAST:event_jFormattedTextField1ActionPerformed
 
     private void btnCalcTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcTotalActionPerformed
-        int valorTotal = 0;
-        int index = masterTable.getSelectedRow();// pegamos un index en el masterTable
-        Cabfactura c = list.get(masterTable.convertRowIndexToModel(index));
-        Collection<CabfacturaHasCuota> ds = c.getCabfacturaHasCuotaList();
-        for (CabfacturaHasCuota detCuota : ds)// for each, aca el va a pegar todos esos objetos dentro de la colección
-        {        
-            valorTotal = valorTotal + detCuota.getMonto();//Valor = valor total + total detalle de cada línea
-        }
-        //Aca el total general es igual a valor total
-        tfTotalGral.setText(String.valueOf(valorTotal));//tfTotalGral es el nombre de la variable Total General de la cabecera
+//        int valorTotal = 0;
+//        int index = masterTable.getSelectedRow();// pegamos un index en el masterTable
+//        Cabfactura c = list.get(masterTable.convertRowIndexToModel(index));
+//        Collection<CabfacturaHasCuota> ds = c.getCabfacturaHasCuotaList();
+//        for (CabfacturaHasCuota detCuota : ds)// for each, aca el va a pegar todos esos objetos dentro de la colección
+//        {        
+//            valorTotal = valorTotal + detCuota.getMonto();//Valor = valor total + total detalle de cada línea
+//        }
+//        //Aca el total general es igual a valor total
+//        tfTotalGral.setText(String.valueOf(valorTotal));//tfTotalGral es el nombre de la variable Total General de la cabecera
     }//GEN-LAST:event_btnCalcTotalActionPerformed
 
 
@@ -521,7 +521,7 @@ public class factura extends JPanel {
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnAgregarCuota;
     private javax.swing.JButton btnBorrar;
-    private javax.swing.JButton btnCalcTotal;
+    public static javax.swing.JButton btnCalcTotal;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnNuevaFactura;
     private javax.persistence.Query clienteQuery;
@@ -537,14 +537,14 @@ public class factura extends JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private java.util.List<bean.Cabfactura> list;
+    public static java.util.List<bean.Cabfactura> list;
     private javax.swing.JScrollPane masterScrollPane;
-    private javax.swing.JTable masterTable;
+    public static javax.swing.JTable masterTable;
     private javax.persistence.Query query;
     private javax.swing.JTextField tfCliente;
     private javax.swing.JTextField tfCodCabecera;
     private javax.swing.JTextField tfNombreCli;
-    private javax.swing.JTextField tfTotalGral;
+    public static javax.swing.JTextField tfTotalGral;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
     public static void main(String[] args) {
