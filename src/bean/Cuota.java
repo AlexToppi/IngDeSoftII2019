@@ -53,7 +53,7 @@ public class Cuota implements Serializable {
     private String estado;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "monto")
-    private Double monto;
+    private Integer monto;
     @Column(name = "fecha_vencimiento")
     @Temporal(TemporalType.DATE)
     private Date fechaVencimiento;
@@ -103,12 +103,12 @@ public class Cuota implements Serializable {
         changeSupport.firePropertyChange("estado", oldEstado, estado);
     }
 
-    public Double getMonto() {
+    public Integer getMonto() {
         return monto;
     }
 
-    public void setMonto(Double monto) {
-        Double oldMonto = this.monto;
+    public void setMonto(Integer monto) {
+        Integer oldMonto = this.monto;
         this.monto = monto;
         changeSupport.firePropertyChange("monto", oldMonto, monto);
     }

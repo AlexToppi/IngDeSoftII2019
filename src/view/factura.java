@@ -28,6 +28,11 @@ import javax.swing.JPanel;
  */
 public class factura extends JPanel {
 
+    /**
+     * Esta ventana se encarga de permitir agregar los datos de la cabecera factura y
+     * detalle factura.
+     */
+    
     public factura() {
         initComponents();
         if (!Beans.isDesignTime()) {

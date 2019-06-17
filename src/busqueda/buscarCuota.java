@@ -19,6 +19,8 @@ public class buscarCuota extends javax.swing.JDialog {
 
     /**
      * Creates new form buscarCuota
+     * Esta ventana se encarga de poder buscar las cuotas y luego insertarlas en la tabla
+     * detalle de factura.
      */
     public buscarCuota(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -38,7 +40,6 @@ public class buscarCuota extends javax.swing.JDialog {
         EntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("siscon_ogPU").createEntityManager();
         cuotaQuery = java.beans.Beans.isDesignTime() ? null : EntityManager.createQuery("SELECT c FROM Cuota c");
         cuotaList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(cuotaQuery.getResultList());
-        ordFilaConvString1 = new convertir.OrdFilaConvString();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtCuota = new javax.swing.JTable();
@@ -46,8 +47,6 @@ public class buscarCuota extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         btnImportat = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
-
-        ordFilaConvString1.setTable(jtCuota);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -64,7 +63,7 @@ public class buscarCuota extends javax.swing.JDialog {
         columnBinding.setColumnClass(java.util.Date.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${monto}"));
         columnBinding.setColumnName("Monto");
-        columnBinding.setColumnClass(Double.class);
+        columnBinding.setColumnClass(Integer.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${estado}"));
         columnBinding.setColumnName("Estado");
         columnBinding.setColumnClass(String.class);
@@ -107,7 +106,6 @@ public class buscarCuota extends javax.swing.JDialog {
         });
 
         org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, jtCuota, org.jdesktop.beansbinding.ELProperty.create("${rowSorter}"), jTextField1, org.jdesktop.beansbinding.BeanProperty.create("text"));
-        binding.setConverter(ordFilaConvString1);
         bindingGroup.addBinding(binding);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -171,16 +169,17 @@ public class buscarCuota extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void btnImportatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportatActionPerformed
-        this.d.getCabfacturaHasCuotaPK().setCuotaIdcuota((int)  jtCuota.getValueAt(jtCuota.getSelectedRow(), 5));//el 2 corresponde al campo 2 de la línea seleccionada que Precio de Venta
-        //this.d.getCabfacturaHasCuotaPK().setCuotaIdcuota((int) jtCuota.getValueAt(jtCuota.getSelectedRow() ,1));
+        this.d.getCabfacturaHasCuotaPK().setCuotaIdcuota((int) jtCuota.getValueAt(jtCuota.getSelectedRow(), 5));
+        this.d.setMonto((int) jtCuota.getValueAt(jtCuota.getSelectedRow(), 2));//el 2 corresponde al campo 2 de la línea seleccionada que Precio de Venta
+
+        int valorTotal = (int) jtCuota.getValueAt(jtCuota.getSelectedRow(), 2);
         
-        int valorTotal = 0;
         int index = factura.masterTable.getSelectedRow();// pegamos un index en el masterTable
         Cabfactura c = factura.list.get(factura.masterTable.convertRowIndexToModel(index));
         Collection<CabfacturaHasCuota> ds = c.getCabfacturaHasCuotaList();
         for (CabfacturaHasCuota detCuota : ds)// for each, aca el va a pegar todos esos objetos dentro de la colección
         {        
-            valorTotal = valorTotal + detCuota.getMonto();//Valor = valor total + total detalle de cada línea
+            valorTotal = valorTotal +  detCuota.getMonto();//Valor = valor total + total detalle de cada línea
         }
         //Aca el total general es igual a valor total
         factura.tfTotalGral.setText(String.valueOf(valorTotal));//tfTotalGral es el nombre de la variable Total General de la cabecera
@@ -233,7 +232,6 @@ public class buscarCuota extends javax.swing.JDialog {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.persistence.EntityManager EntityManager;
     private javax.swing.JButton btnImportat;
@@ -245,7 +243,6 @@ public class buscarCuota extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTable jtCuota;
-    private convertir.OrdFilaConvString ordFilaConvString1;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 private CabfacturaHasCuota d;//se hace el import necesario

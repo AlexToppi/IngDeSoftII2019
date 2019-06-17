@@ -12,6 +12,7 @@ import javax.swing.*;
 import utilitarios.*;
 import view.factura;
 import view.cliente;
+import view.siniestro;
 
 //import registro.*;
 public class ventanaPrincipal extends javax.swing.JFrame {
@@ -50,7 +51,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         itemRegistros = new javax.swing.JMenu();
         menuCliente = new javax.swing.JMenuItem();
         menuDireccion = new javax.swing.JMenuItem();
-        menuTelefono = new javax.swing.JMenuItem();
+        menuSiniestro = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenuItem11 = new javax.swing.JMenuItem();
@@ -143,10 +144,15 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         });
         itemRegistros.add(menuDireccion);
 
-        menuTelefono.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.ALT_MASK));
-        menuTelefono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/cargo.png"))); // NOI18N
-        menuTelefono.setText("Siniestro");
-        itemRegistros.add(menuTelefono);
+        menuSiniestro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.ALT_MASK));
+        menuSiniestro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/cargo.png"))); // NOI18N
+        menuSiniestro.setText("Siniestro");
+        menuSiniestro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuSiniestroActionPerformed(evt);
+            }
+        });
+        itemRegistros.add(menuSiniestro);
 
         jMenuItem12.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/check.png"))); // NOI18N
@@ -329,9 +335,9 @@ public class ventanaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64)
+                .addGap(61, 61, 61)
                 .addComponent(jLabel2)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         setBounds(0, 0, 521, 519);
@@ -404,6 +410,12 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         factura.main(args);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
+    private void menuSiniestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSiniestroActionPerformed
+        String args[] = new String[1];
+        args[0] = "Registro Siniestro";
+        siniestro.main(args);
+    }//GEN-LAST:event_menuSiniestroActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -475,7 +487,7 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuNimbus;
     private javax.swing.JMenuItem menuReporteVentas;
     private javax.swing.JMenuItem menuSalir;
-    private javax.swing.JMenuItem menuTelefono;
+    private javax.swing.JMenuItem menuSiniestro;
     private org.netbeans.examples.lib.timerbean.Timer timer1;
     // End of variables declaration//GEN-END:variables
 
