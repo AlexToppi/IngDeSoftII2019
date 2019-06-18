@@ -96,33 +96,33 @@ public class pIdSiniestro extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-//                try {
-//            Class.forName("com.mysql.jdbc.Driver");
-//            Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/siscon_og", "root", "");
-//            HashMap par = new HashMap();//no definimos ningún parámetro por eso lo dejamos así
-//            par.put("idsiniestro", parId.getText());
-//            JasperPrint jp = JasperFillManager.fillReport("C:\\Users\\usuario\\Desktop\\FPUNA\\7to semestre\\IS2\\repositorio\\IngDeSoftII2019\\src\\reportes\\siniestro.jasper", par, con);//el primer parámetro es el camino del archivo, se cambia esta dirección por la dirección del archivo .jasper
-//            JasperViewer jv = new JasperViewer(jp);
-//            jv.setVisible(true);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-        if (!parId.getText().equals("")) {
-
-            Map p = new HashMap();
-            p.put("idsiniestro", parId.getText());
-            JasperReport report;
-
-            try {
-                Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/siscon_og", "root", "");
-                JasperPrint print = JasperFillManager.fillReport("C:\\Users\\usuario\\Desktop\\FPUNA\\7to semestre\\IS2\\repositorio\\IngDeSoftII2019\\src\\reportes\\siniestro.jasper", p, con);
-                JasperViewer view = new JasperViewer(print, false);
-                view.setTitle("Siniestro");
-                view.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+                try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/siscon_og", "root", "");
+            HashMap par = new HashMap();//no definimos ningún parámetro por eso lo dejamos así
+            par.put("idsiniestro", parId.getText());
+            JasperPrint jp = JasperFillManager.fillReport("C:\\Users\\usuario\\Desktop\\FPUNA\\7to semestre\\IS2\\repositorio\\IngDeSoftII2019\\src\\reportes\\siniestro.jasper", par, con);//el primer parámetro es el camino del archivo, se cambia esta dirección por la dirección del archivo .jasper
+            JasperViewer jv = new JasperViewer(jp);
+            jv.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+//        if (!parId.getText().equals("")) {
+//
+//            Map p = new HashMap();
+//            p.put("idsiniestro", parId.getText());
+//            JasperReport report;
+//
+//            try {
+//                Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/siscon_og", "root", "");
+//                JasperPrint print = JasperFillManager.fillReport("C:\\Users\\usuario\\Desktop\\FPUNA\\7to semestre\\IS2\\repositorio\\IngDeSoftII2019\\src\\reportes\\siniestro.jasper", p, con);
+//                JasperViewer view = new JasperViewer(print, false);
+//                view.setTitle("Siniestro");
+//                view.setVisible(true);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void parIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parIdActionPerformed

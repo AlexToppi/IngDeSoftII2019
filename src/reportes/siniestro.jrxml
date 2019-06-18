@@ -21,7 +21,7 @@ FROM
      `siniestro` siniestro INNER JOIN `detallesiniestro` detallesiniestro ON siniestro.`idSiniestro` = detallesiniestro.`siniestro_idSiniestro`
      INNER JOIN `taller` taller ON detallesiniestro.`taller_idtaller` = taller.`idtaller`
      INNER JOIN `poliza` poliza ON siniestro.`poliza_idpoliza` = poliza.`idpoliza`
-     INNER JOIN `cliente_vehiculo` cliente_vehiculo ON poliza.`cliente_vehiculo_cliente_idCliente1` = cliente_vehiculo.`cliente_idCliente`
+     INNER JOIN `cliente_vehiculo` cliente_vehiculo ON poliza.`cliente_vehiculo_chapaId` = cliente_vehiculo.`chapaid`
      INNER JOIN `cliente` cliente ON cliente_vehiculo.`cliente_idCliente` = cliente.`idCliente`
 where idsiniestro = $P{idsiniestro}]]>
 	</queryString>
