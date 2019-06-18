@@ -13,6 +13,7 @@ import utilitarios.*;
 import view.factura;
 import view.cliente;
 import view.siniestro;
+import view.viewpoliza;
 
 //import registro.*;
 public class ventanaPrincipal extends javax.swing.JFrame {
@@ -399,9 +400,10 @@ public class ventanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuClienteMouseClicked
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        String args[] = new String[1];
-        args[0] = "Movimiento - Registro de Presupuesto";
-//        vehiculo.main(args);
+        viewpoliza form = new viewpoliza();
+        form.control = 2;
+        form.toFront();
+        form.setVisible(true);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed

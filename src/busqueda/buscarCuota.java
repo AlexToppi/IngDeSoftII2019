@@ -67,9 +67,6 @@ public class buscarCuota extends javax.swing.JDialog {
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${estado}"));
         columnBinding.setColumnName("Estado");
         columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${cuotaNro}"));
-        columnBinding.setColumnName("Cuota Nro");
-        columnBinding.setColumnClass(String.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${idcuota}"));
         columnBinding.setColumnName("Idcuota");
         columnBinding.setColumnClass(Integer.class);
@@ -169,7 +166,7 @@ public class buscarCuota extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void btnImportatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportatActionPerformed
-        this.d.getCabfacturaHasCuotaPK().setCuotaIdcuota((int) jtCuota.getValueAt(jtCuota.getSelectedRow(), 5));
+        this.d.getCabfacturaHasCuotaPK().setCuotaIdcuota((int) jtCuota.getValueAt(jtCuota.getSelectedRow(), 4));
         this.d.setMonto((int) jtCuota.getValueAt(jtCuota.getSelectedRow(), 2));//el 2 corresponde al campo 2 de la línea seleccionada que Precio de Venta
 
         int valorTotal = (int) jtCuota.getValueAt(jtCuota.getSelectedRow(), 2);

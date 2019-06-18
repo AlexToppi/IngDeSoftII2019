@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rpcuotaspoliza" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f0f1bc48-f7e4-43f4-9cc3-e777a8e01cb6">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idpoliza" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     cliente.`nombre` AS cliente_nombre,
+     cliente.`apellido` AS cliente_apellido,
+     cliente.`ci` AS cliente_ci,
+     cliente.`celular` AS cliente_celular,
+     cliente_vehiculo.`chasis` AS cliente_vehiculo_chasis,
+     cliente_vehiculo.`color` AS cliente_vehiculo_color,
+     cliente_vehiculo.`marca` AS cliente_vehiculo_marca,
+     detalle_cuota.`monto` AS detalle_cuota_monto,
+     detalle_cuota.`fecha_venc` AS detalle_cuota_fecha_venc,
+     poliza.`monto_total` AS poliza_monto_total,
+     poliza.`fecha_inicio` AS poliza_fecha_inicio,
+     poliza.`fecha_venc` AS poliza_fecha_venc,
+     cliente_vehiculo.`chapaId` AS cliente_vehiculo_chapaId,
+     detalle_cuota.`Estado` AS detalle_cuota_Estado
+FROM
+     `cliente` cliente INNER JOIN `cliente_vehiculo` cliente_vehiculo ON cliente.`idCliente` = cliente_vehiculo.`cliente_idCliente`
+     INNER JOIN `poliza` poliza ON cliente_vehiculo.`chapaId` = poliza.`cliente_vehiculo_chapaId`
+     INNER JOIN `detalle_cuota` detalle_cuota ON poliza.`idpoliza` = detalle_cuota.`poliza_idpoliza`
+where idpoliza=$P{idpoliza}
+]]>
+	</queryString>
+	<field name="cliente_nombre" class="java.lang.String"/>
+	<field name="cliente_apellido" class="java.lang.String"/>
+	<field name="cliente_ci" class="java.lang.String"/>
+	<field name="cliente_celular" class="java.lang.String"/>
+	<field name="cliente_vehiculo_chasis" class="java.lang.String"/>
+	<field name="cliente_vehiculo_color" class="java.lang.String"/>
+	<field name="cliente_vehiculo_marca" class="java.lang.String"/>
+	<field name="detalle_cuota_monto" class="java.lang.Double"/>
+	<field name="detalle_cuota_fecha_venc" class="java.sql.Date"/>
+	<field name="poliza_monto_total" class="java.lang.Integer"/>
+	<field name="poliza_fecha_inicio" class="java.sql.Date"/>
+	<field name="poliza_fecha_venc" class="java.sql.Date"/>
+	<field name="cliente_vehiculo_chapaId" class="java.lang.String"/>
+	<field name="detalle_cuota_Estado" class="java.lang.String"/>
+	<variable name="poliza_monto_total_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{poliza_monto_total}]]></variableExpression>
+	</variable>
+	<variable name="detalle_cuota_monto_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{detalle_cuota_monto}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="125" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="125" forecolor="#000000" uuid="6a7857b6-5d56-49cd-b75a-35473b32528f"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[POLIZA CUOTAS]]></text>
+			</staticText>
+			<textField pattern="#,##0">
+				<reportElement x="18" y="40" width="100" height="20" uuid="2357f055-2e2d-4c77-9f9c-55961d3d8aca"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente_ci}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="40" width="100" height="20" uuid="d763bf2d-b471-4e78-9a64-9c44b05255e3"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="219" y="40" width="100" height="20" uuid="c52f06fd-7d4e-4dda-9f40-7a6aad38e7d6"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente_apellido}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="18" y="20" width="100" height="20" uuid="5fb6d43c-438c-4d90-b52f-54ec1abc1502"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="20" width="100" height="20" uuid="ab0de843-9cb1-4352-9304-3e4ba3fd7020"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROPIETARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="346" y="20" width="100" height="20" uuid="34e45de1-3b7b-443d-bd72-17266abb15d7"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CELULAR]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="346" y="40" width="100" height="20" uuid="c9d17b5b-a80f-4e9f-9718-2d62cf5dae37"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente_celular}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="18" y="73" width="100" height="20" uuid="80382148-ac7a-411f-ad54-80d198b893cd"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CHAPA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="73" width="100" height="20" uuid="153336d9-4aab-428c-ae4b-b15453645d78"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CHASIS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="264" y="73" width="100" height="20" uuid="97de0b8c-16a7-42ce-952a-64bbb5920cd9"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MARCA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="73" width="100" height="20" uuid="ab7cfc18-1777-457a-86bb-567f11fb1ca6"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COLOR]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="130" y="93" width="100" height="20" uuid="4397f41a-d6b9-4be2-9c3a-516cada84677"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente_vehiculo_chasis}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="18" y="93" width="100" height="20" uuid="71433450-9894-487a-afdb-0d60a1d74cb9"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente_vehiculo_chapaId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="264" y="93" width="100" height="20" uuid="28120347-5ea0-431f-95a8-07a57c524b50"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente_vehiculo_marca}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="93" width="100" height="20" uuid="dc1586e8-607b-4058-a813-9e99be60fd23"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente_vehiculo_color}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="18" y="2" width="100" height="20" uuid="affca853-af4c-41c6-89a8-39ae9445e6aa"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MONTO CUOTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="154" y="2" width="146" height="20" uuid="5d1955b2-d590-42b8-a372-ddbb680cf81a"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA VENCIMIENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="319" y="2" width="146" height="20" uuid="eb411dec-4938-4e62-9e21-424a4c72b53f"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESTADO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="29" splitType="Stretch">
+			<textField pattern="#,##0">
+				<reportElement x="18" y="0" width="100" height="20" uuid="c5958c5a-e5ff-4fff-bf5a-13c60b788414"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalle_cuota_monto}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="154" y="0" width="100" height="20" uuid="6bc09b37-872b-4436-8b0c-5cbf3aba10db"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalle_cuota_fecha_venc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="319" y="3" width="100" height="20" uuid="f5778014-d799-4cad-b053-a71f5c971960"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalle_cuota_Estado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="0" width="515" height="13" backcolor="#E6E6E6" uuid="d5fe7abf-2c90-4ed3-bb00-ce9eaa3f22d1"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="9" y="0" width="100" height="13" uuid="10883e2b-a529-467d-ac12-68eccc8c564e"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="516" y="0" width="40" height="13" backcolor="#E6E6E6" uuid="329088b6-fca1-422d-9d77-77a5833a9588"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="28" splitType="Stretch">
+			<textField pattern="#,##0">
+				<reportElement x="455" y="0" width="100" height="20" uuid="13d174e3-b440-4bb8-9da5-08e4120d7ed3"/>
+				<textFieldExpression><![CDATA[$V{detalle_cuota_monto_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="346" y="0" width="100" height="20" uuid="13dbb857-9955-4705-9102-63822996c53f"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL A PAGAR]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

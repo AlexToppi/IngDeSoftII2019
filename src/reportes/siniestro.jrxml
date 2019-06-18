@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a016260f-cd16-4c37-adda-dc29fe5def23">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idsiniestro" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     siniestro.`descripcion` AS siniestro_descripcion,
+     siniestro.`fecha_hecho` AS siniestro_fecha_hecho,
+     siniestro.`fecha_reporte` AS siniestro_fecha_reporte,
+     siniestro.`costo` AS siniestro_costo,
+     detallesiniestro.`precio` AS detallesiniestro_precio,
+     detallesiniestro.`tipo_mantenimiento` AS detallesiniestro_tipo_mantenimiento,
+     taller.`nombre_taller` AS taller_nombre_taller,
+     cliente.`nombre` AS cliente_nombre,
+     cliente.`apellido` AS cliente_apellido,
+     cliente.`ci` AS cliente_ci,
+     poliza.`idpoliza` AS poliza_idpoliza
+FROM
+     `siniestro` siniestro INNER JOIN `detallesiniestro` detallesiniestro ON siniestro.`idSiniestro` = detallesiniestro.`siniestro_idSiniestro`
+     INNER JOIN `taller` taller ON detallesiniestro.`taller_idtaller` = taller.`idtaller`
+     INNER JOIN `poliza` poliza ON siniestro.`poliza_idpoliza` = poliza.`idpoliza`
+     INNER JOIN `cliente_vehiculo` cliente_vehiculo ON poliza.`cliente_vehiculo_cliente_idCliente1` = cliente_vehiculo.`cliente_idCliente`
+     INNER JOIN `cliente` cliente ON cliente_vehiculo.`cliente_idCliente` = cliente.`idCliente`
+where idsiniestro = $P{idsiniestro}]]>
+	</queryString>
+	<field name="siniestro_descripcion" class="java.lang.String"/>
+	<field name="siniestro_fecha_hecho" class="java.sql.Date"/>
+	<field name="siniestro_fecha_reporte" class="java.sql.Date"/>
+	<field name="siniestro_costo" class="java.lang.Double"/>
+	<field name="detallesiniestro_precio" class="java.lang.Integer"/>
+	<field name="detallesiniestro_tipo_mantenimiento" class="java.lang.String"/>
+	<field name="taller_nombre_taller" class="java.lang.String"/>
+	<field name="cliente_nombre" class="java.lang.String"/>
+	<field name="cliente_apellido" class="java.lang.String"/>
+	<field name="cliente_ci" class="java.lang.String"/>
+	<field name="poliza_idpoliza" class="java.lang.Integer"/>
+	<variable name="detallesiniestro_tipo_mantenimiento_1" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{detallesiniestro_tipo_mantenimiento}]]></variableExpression>
+	</variable>
+	<title>
+		<band height="48" splitType="Stretch">
+			<staticText>
+				<reportElement x="219" y="10" width="136" height="29" uuid="f96f3f2c-30ae-4719-8173-01c0112b1853"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte Sinisetro]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="165" splitType="Stretch">
+			<textField>
+				<reportElement x="19" y="23" width="115" height="20" uuid="ad7aec3e-aa10-4843-8fd2-e588da942786"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="134" y="23" width="110" height="20" uuid="cfaf3609-a56c-4891-892e-f38f535bf24d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente_apellido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="266" y="23" width="100" height="20" uuid="19aeb0ac-145f-46f1-a77d-721b12380750"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente_ci}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="394" y="23" width="114" height="20" uuid="0ab3d0a3-5817-416f-8edc-145ee4eef88a"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{poliza_idpoliza}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="154" y="82" width="212" height="81" uuid="0509d00c-e403-4ca9-89e3-611b4e727c28"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{siniestro_descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="394" y="82" width="114" height="20" uuid="1c6ca2c6-683c-491d-bfed-484d6b65c89c"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{siniestro_fecha_hecho}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="394" y="143" width="114" height="20" uuid="bee6fc36-19b3-46e1-907c-5c7ed1e9f267"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{siniestro_fecha_reporte}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="19" y="88" width="100" height="20" uuid="5c91d201-277e-4004-81b7-73b80359afa3"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{siniestro_costo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="19" y="3" width="100" height="20" uuid="abaa2285-db8a-49eb-9385-47c2f2ff2b53"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Propietario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="266" y="3" width="100" height="20" uuid="100c4b2e-ac67-4ea7-9965-7ad5a29efc5b"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="394" y="3" width="100" height="20" uuid="01b27014-886d-4e97-8e31-c4bbca242ce6"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código Poliza]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="62" width="100" height="20" uuid="7728fd11-bd21-4e9b-abfc-237970929937"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Costo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="154" y="62" width="100" height="20" uuid="d5dc36ef-9976-4a81-be63-a3a72340e6b6"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripcion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="394" y="62" width="100" height="20" uuid="332a8b03-41df-4359-8e9c-d783ae72175d"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha siniestro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="394" y="123" width="100" height="20" uuid="ba462619-84ce-4db5-9366-6a5084e67a33"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha reporte]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="30" y="0" width="100" height="20" uuid="79891f49-bfe2-4c5d-86b4-6c07b42a54ce"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Taller]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="201" y="2" width="100" height="20" uuid="77cfb14a-fc91-4d3b-860c-ed0f1d5130cc"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Precio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="352" y="2" width="142" height="20" uuid="d7928105-f56a-4aad-81c8-ea867685e6f7"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de mantenimiento]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="174" splitType="Stretch">
+			<textField>
+				<reportElement x="30" y="0" width="100" height="20" uuid="f89c9ada-ba43-450d-828e-01b806f2a2d6"/>
+				<textFieldExpression><![CDATA[$F{taller_nombre_taller}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="201" y="0" width="100" height="20" uuid="ae7fd1c4-b70d-4b71-85ab-5efaae5d833b"/>
+				<textFieldExpression><![CDATA[$F{detallesiniestro_precio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="352" y="0" width="100" height="20" uuid="320a721a-e851-44af-b64e-9aacb56eba3c"/>
+				<textFieldExpression><![CDATA[$F{detallesiniestro_tipo_mantenimiento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="452" y="1" width="100" height="20" uuid="12f4f3c4-4463-4172-9582-c2dd63fca4b9"/>
+				<textFieldExpression><![CDATA["Pagina" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="19" y="1" width="100" height="20" uuid="9afd5a26-17b5-4f6b-b59d-95c49c073639"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH.mm">
+				<reportElement x="119" y="0" width="100" height="20" uuid="ea32aff6-4b05-459d-beaa-6b7cfbe866cc"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="968af967-466d-4274-b938-306a0e5d3294">
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     cabfactura.`idcabFactura` AS cabfactura_idcabFactura,
+     cabfactura.`id_cliente` AS cabfactura_id_cliente,
+     cabfactura.`fecha` AS cabfactura_fecha,
+     cabfactura.`total` AS cabfactura_total,
+     cabfactura.`tipoFact` AS cabfactura_tipoFact,
+     cabfactura_has_cuota.`cabFactura_idcabFactura` AS cabfactura_has_cuota_cabFactura_idcabFactura,
+     cabfactura_has_cuota.`cuota_idcuota` AS cabfactura_has_cuota_cuota_idcuota,
+     cabfactura_has_cuota.`monto` AS cabfactura_has_cuota_monto
+FROM
+     `cabfactura` cabfactura INNER JOIN `cabfactura_has_cuota` cabfactura_has_cuota ON cabfactura.`idcabFactura` = cabfactura_has_cuota.`cabFactura_idcabFactura`]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
