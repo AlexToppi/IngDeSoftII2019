@@ -13,6 +13,7 @@ import utilitarios.*;
 import view.factura;
 import view.cliente;
 import view.siniestro;
+import view.usuario;
 import view.viewpoliza;
 
 //import registro.*;
@@ -169,6 +170,11 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         jMenuItem11.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/user-32.png"))); // NOI18N
         jMenuItem11.setText("Usuario del Sistema");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         itemRegistros.add(jMenuItem11);
         itemRegistros.add(jSeparator1);
 
@@ -417,6 +423,12 @@ public class ventanaPrincipal extends javax.swing.JFrame {
         args[0] = "Registro Siniestro";
         siniestro.main(args);
     }//GEN-LAST:event_menuSiniestroActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        String args[] = new String[1];
+        args[0] = "Registro Usuario";
+        usuario.main(args);
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     /**
      * @param args the command line arguments

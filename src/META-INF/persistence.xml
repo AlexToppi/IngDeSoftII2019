@@ -20,6 +20,7 @@
     <class>bean.Detallesiniestro</class>
     <class>busqueda.Taller</class>
     <class>busqueda.DetalleCuota</class>
+    <class>bean.Usuario_1</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/siscon_og?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

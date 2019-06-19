@@ -144,7 +144,7 @@ public class Taller_1 implements Serializable {
 
     @Override
     public String toString() {
-        return "view.Taller_1[ idtaller=" + idtaller + " ]";
+        return "bean.Taller_1[ idtaller=" + idtaller + " ]";
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
