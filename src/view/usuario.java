@@ -448,7 +448,7 @@ public class usuario extends JPanel {
             public void run() {
                 JFrame frame = new JFrame();
                 frame.setContentPane(new usuario());
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setLocationRelativeTo(null);
                 frame.pack();
                 frame.setVisible(true);
             }
